@@ -82,6 +82,6 @@ export const hashText = async (text: string, length: number = 8): Promise<string
 	const data = encoder.encode(text);
 	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	const hashHex = hashArray.slice(0, length).map((b) => b.toString(16).padStart(2, '0')).join('');
+	const hashHex = hashArray.slice(0, length).map((b) => b.toString(36).padStart(2, '0')).join('');
 	return hashHex;
 };
