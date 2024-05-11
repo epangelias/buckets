@@ -61,7 +61,7 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 	async function view(e: MouseEvent) {
 		e.preventDefault();
 		await save();
-		globalThis.open((e.target as HTMLAnchorElement).href, '_blank');
+		window.location.replace((e.target as HTMLAnchorElement).href);
 	}
 
 	return (
