@@ -21,7 +21,7 @@ export default function BucketView({ text, passkey }: { text: string; passkey: s
 	useEffect(() => {
 		render();
 		document.documentElement.classList.add('markdown-body');
-		document.documentElement.setAttribute('data-color-mode', 'dark');
+		document.documentElement.setAttribute('data-color-mode', lightDark ? 'dark' : 'light');
 		document.documentElement.setAttribute('data-light-theme', 'light');
 		document.documentElement.setAttribute('data-dark-theme', 'dark');
 		document.documentElement.style.backgroundColor = 'var(--color-canvas-default)';
