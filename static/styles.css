@@ -18,7 +18,7 @@ textarea{
 body{
     max-width: 880px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 0 1rem;
 }
 
 :is(button, input) + :is(button, input){

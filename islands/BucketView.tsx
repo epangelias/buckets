@@ -28,7 +28,7 @@ export default function BucketView({ text, passkey }: { text: string; passkey: s
 	}, []);
 
 	return (
-		<main>
+		<main style={{ paddingTop: '2rem' }}>
 			{globalThis?.location?.hash == '##' &&
 				(
 					<a
