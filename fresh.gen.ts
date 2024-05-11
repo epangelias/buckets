@@ -2,15 +2,18 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_hash_ from './routes/[hash].tsx';
 import * as $_404 from './routes/_404.tsx';
 import * as $_app from './routes/_app.tsx';
 import * as $index from './routes/index.tsx';
 import * as $save from './routes/save.tsx';
 import * as $BucketEdit from './islands/BucketEdit.tsx';
+import * as $BucketView from './islands/BucketView.tsx';
 import { type Manifest } from '$fresh/server.ts';
 
 const manifest = {
 	routes: {
+		'./routes/[hash].tsx': $_hash_,
 		'./routes/_404.tsx': $_404,
 		'./routes/_app.tsx': $_app,
 		'./routes/index.tsx': $index,
@@ -18,6 +21,7 @@ const manifest = {
 	},
 	islands: {
 		'./islands/BucketEdit.tsx': $BucketEdit,
+		'./islands/BucketView.tsx': $BucketView,
 	},
 	baseUrl: import.meta.url,
 } satisfies Manifest;

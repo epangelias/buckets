@@ -58,8 +58,17 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 		}
 	}, []);
 
+	async function view(e: MouseEvent) {
+		e.preventDefault();
+		await save();
+		globalThis.open((e.target as HTMLAnchorElement).href, '_blank');
+	}
+
 	return (
 		<form ref={formRef} onSubmit={(e) => e.preventDefault()}>
+			<p>
+			</p>
+
 			<div>
 				<input type='text' name='key' value={keyData.value} autocomplete='off' placeholder='Key' />
 				<button type='button' onClick={encrypt}>Encrypt</button>
@@ -67,6 +76,7 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 				<button type='button' onClick={save}>Save</button>
 				<input type='checkbox' name='include-key' id='include-key' checked={includeKey} />
 				<label htmlFor='include-key'>Include Key</label>
+				<a onClick={view} href={'/' + hash.value + '?key=' + keyData.value} target='_blank' style={{ float: 'right' }}>View</a>
 				<br />
 				<br />
 			</div>

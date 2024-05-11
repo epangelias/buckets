@@ -12,12 +12,13 @@ textarea{
     font-size: 1rem;
     padding: 1rem;
     font-family: inherit;
+    resize: vertical;
 }
 
 body{
     max-width: 880px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
 }
 
 :is(button, input) + :is(button, input){
