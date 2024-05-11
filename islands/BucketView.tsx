@@ -29,6 +29,15 @@ export default function BucketView({ text, passkey }: { text: string; passkey: s
 
 	return (
 		<main>
+			{globalThis?.location?.hash == '##' &&
+				(
+					<a
+						href={'/?hash=' + globalThis?.location?.pathname.split('/').slice(1).join('/') + '&key=' + passkey}
+						style={{ float: 'right' }}
+					>
+						Edit
+					</a>
+				)}
 			<div dangerouslySetInnerHTML={{ __html: html.value }}></div>
 		</main>
 	);
