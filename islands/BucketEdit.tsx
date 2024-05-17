@@ -65,8 +65,8 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 			</p>
 
 			<div>
-				<input type='text' name='key' value={keyData.value} autocomplete='off' placeholder='Key' />
 				<button type='button' onClick={save}>Save</button>
+				<input type='text' name='key' value={keyData.value} autocomplete='off' placeholder='Key' />
 				<a
 					onClick={view}
 					href={viewURL}
