@@ -24,3 +24,19 @@ body{
 :is(button, input) + :is(button, input){
     margin-left: .5rem;
 }
+
+
+.qr-code{
+    text-align: center;
+    margin: 2rem 0;
+
+    > a{
+        display: inline-block;
+    }
+
+    & svg{
+        margin-bottom: .5rem;
+        height: 200px;
+        border-radius: .5rem;
+    }
+}

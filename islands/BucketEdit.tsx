@@ -1,6 +1,7 @@
 import { useSignal } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { decryptText, encryptText } from '../helpers/crypto.ts';
+import { qrcode } from '@libs/qrcode';
 
 export default function BucketEdit({ text, passkey }: { text: string; passkey: string | null }) {
 	const formRef = useRef<HTMLFormElement>(null);
@@ -54,6 +55,10 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 		window.location.replace((e.target as HTMLAnchorElement).href);
 	}
 
+	const viewURL = '/' + hash.value + (keyData.value ? '?key=' + keyData.value + '&edit=1' : '?edit=1');
+	const pubURL = globalThis?.location?.origin + '/' + hash.value + (keyData.value ? '?key=' + keyData.value : '');
+	const pubURLShort = globalThis?.location?.host + '/' + hash.value + (keyData.value ? '?key=' + keyData.value : '');
+
 	return (
 		<form ref={formRef} onSubmit={(e) => e.preventDefault()}>
 			<p>
@@ -64,7 +69,7 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 				<button type='button' onClick={save}>Save</button>
 				<a
 					onClick={view}
-					href={'/' + hash.value + (keyData.value ? '?key=' + keyData.value + '&edit=1' : '?edit=1')}
+					href={viewURL}
 					target='_blank'
 					style={{ float: 'right' }}
 				>
@@ -81,6 +86,15 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 				autoComplete='off'
 			>
 			</textarea>
+
+			{hash.value && (
+				<div class='qr-code'>
+					<a href={pubURL}>
+						<div dangerouslySetInnerHTML={{ __html: qrcode(pubURL, { output: 'svg' }) }}></div>
+						<p>{pubURLShort}</p>
+					</a>
+				</div>
+			)}
 		</form>
 	);
 }
