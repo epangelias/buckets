@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import { decryptText, encryptText } from '../helpers/crypto.ts';
 import * as gfm from 'https://deno.land/x/gfm@0.6.0/mod.ts';
 
-export default function BucketView({ text, passkey }: { text: string; passkey: string | null }) {
+export default function BucketView({ text, passkey, edit }: { text: string; passkey: string | null; edit: boolean }) {
 	const html = useSignal('');
 
 	async function render() {
@@ -29,10 +29,10 @@ export default function BucketView({ text, passkey }: { text: string; passkey: s
 
 	return (
 		<main style={{ paddingTop: '2rem' }}>
-			{globalThis?.location?.hash == '##' &&
+			{edit &&
 				(
 					<a
-						href={'/?hash=' + globalThis?.location?.pathname.split('/').slice(1).join('/') + '&key=' + passkey}
+						href={'/?hash=' + globalThis?.location?.pathname.split('/').slice(1).join('/') + (passkey ? '&key=' + passkey : '')}
 						style={{ float: 'right' }}
 					>
 						Edit

@@ -10,6 +10,7 @@ export default async function Home(req: Request, ctx: FreshContext) {
 	const hash = ctx.params.hash || ctx.url.searchParams.get('hash');
 	const key = ctx.url.searchParams.get('key');
 	const raw = !!ctx.url.searchParams.get('raw');
+	const edit = !!ctx.url.searchParams.get('edit');
 
 	if (hash) {
 		const res = await db.get(['blob', hash]);
@@ -23,7 +24,7 @@ export default async function Home(req: Request, ctx: FreshContext) {
 
 	return (
 		<main>
-			<BucketView text={text} passkey={key} />
+			<BucketView text={text} passkey={key} edit={edit} />
 		</main>
 	);
 }

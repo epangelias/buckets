@@ -64,7 +64,7 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 				<button type='button' onClick={save}>Save</button>
 				<a
 					onClick={view}
-					href={'/' + hash.value + (keyData.value ? '?key=' + keyData.value : '') + '##'}
+					href={'/' + hash.value + (keyData.value ? '?key=' + keyData.value + '&edit=1' : '?edit=1')}
 					target='_blank'
 					style={{ float: 'right' }}
 				>
