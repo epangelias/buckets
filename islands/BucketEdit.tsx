@@ -89,7 +89,7 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 
 			{hash.value && (
 				<div class='qr-code'>
-					<a href={pubURL}>
+					<a href={pubURL} target='_blank'>
 						<div dangerouslySetInnerHTML={{ __html: qrcode(pubURL, { output: 'svg' }) }}></div>
 						<p>{pubURLShort}</p>
 					</a>
