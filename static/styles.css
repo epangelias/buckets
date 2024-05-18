@@ -8,12 +8,11 @@ html{
 
 textarea{
     width: 100%;
-    min-height: 150px;
+    min-height: 350px;
     font-size: 1rem;
     padding: 1rem;
     font-family: inherit;
     resize: none;
-    overflow: hidden;
 }
 
 body{
