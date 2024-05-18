@@ -79,9 +79,10 @@ export const decryptText = async (encryptedText: string, password: string): Prom
 };
 
 export const hashText = async (text: string, length: number = 8): Promise<string> => {
-	const data = encoder.encode(text);
+	const data = new TextEncoder().encode(text);
 	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	const hashHex = hashArray.slice(0, length).map((b) => b.toString(36).padStart(2, '0')).join('');
-	return hashHex;
+	const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; // base 62 characters
+	const hashHex = hashArray.slice(0, length).map((b) => characters[b % characters.length]).join('');
+	return hashHex.toUpperCase(); // Reverts case
 };

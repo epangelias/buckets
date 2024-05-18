@@ -59,6 +59,11 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 	const pubURL = globalThis?.location?.origin + '/' + hash.value + (keyData.value ? '?key=' + keyData.value : '');
 	const pubURLShort = globalThis?.location?.host + '/' + hash.value + (keyData.value ? '?key=' + keyData.value : '');
 
+	function editTextarea(event: Event) {
+		const target = event.target as HTMLTextAreaElement;
+		target.style.height = Math.max(target.scrollHeight, target.offsetHeight) + 'px';
+	}
+
 	return (
 		<form ref={formRef} onSubmit={(e) => e.preventDefault()}>
 			<p>
@@ -84,11 +89,13 @@ export default function BucketEdit({ text, passkey }: { text: string; passkey: s
 				placeholder='Bucket Text'
 				value={textData.value}
 				autoComplete='off'
+				onInput={editTextarea}
 			>
 			</textarea>
 
 			{hash.value && (
 				<div class='qr-code'>
+					<h1>{hash.value}</h1>
 					<a href={pubURL} target='_blank'>
 						<div dangerouslySetInnerHTML={{ __html: qrcode(pubURL, { output: 'svg' }) }}></div>
 						<p>{pubURLShort}</p>

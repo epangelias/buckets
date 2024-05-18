@@ -7,7 +7,7 @@ const db = await Deno.openKv();
 export default async function Home(req: Request, ctx: FreshContext) {
 	let text = '';
 
-	const hash = ctx.url.searchParams.get('hash');
+	const hash = ctx.url.searchParams.get('hash')?.toUpperCase();
 	const key = ctx.url.searchParams.get('key');
 	const raw = !!ctx.url.searchParams.get('raw');
 
